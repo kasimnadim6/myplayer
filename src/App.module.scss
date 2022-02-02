@@ -1,0 +1,17 @@
+.app {
+  background: #323232;
+  width: 100vw;
+  height: 100vh;
+  header {
+    height: 9vh;
+  }
+  main {
+    height: 91vh;
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+  }
+}

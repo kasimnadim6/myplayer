@@ -1,0 +1,17 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1.3rem 0;
+  .name {
+    font-size: 4rem;
+    font-weight: bolder;
+    background-image: linear-gradient(
+      to right,
+      var(--primary-color),
+      var(--secondary-color)
+    );
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
