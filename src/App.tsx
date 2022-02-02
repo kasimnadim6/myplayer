@@ -6,31 +6,41 @@ import Player from './components/Player/Player';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadSongs } from './store/Actions/song-action';
 import { IStore } from './interfaces/IStore';
+import Library from './components/Library/Library';
 
 const App = () => {
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state: IStore) => state.ui);
+  const { isLibraryVisible } = useSelector(
+    (state: IStore) => state.songDetails
+  );
 
   useEffect(() => {
     dispatch(loadSongs());
   }, [dispatch]);
-
   return (
-    <div className={styles.app}>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <>
-          <header>
-            <Header />
-          </header>
-          <main>
-            <Song />
-            <Player />
-          </main>
-        </>
-      )}
-    </div>
+    <>
+      <div
+        className={`${styles.app} ${
+          isLibraryVisible ? styles['library-visible'] : ''
+        }`}
+      >
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            <header>
+              <Header />
+            </header>
+            <main>
+              <Song />
+              <Player />
+            </main>
+          </>
+        )}
+      </div>
+      <Library />
+    </>
   );
 };
 

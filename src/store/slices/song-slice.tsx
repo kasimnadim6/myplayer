@@ -13,6 +13,7 @@ const initialState: ISongState = {
     active: false,
   },
   isSongPlaying: false,
+  isLibraryVisible: false,
 };
 const songSlice = createSlice({
   name: 'song',
@@ -27,6 +28,9 @@ const songSlice = createSlice({
     },
     setPlayStatus(state, { payload }) {
       state.isSongPlaying = payload;
+    },
+    setLibraryVisibility(state) {
+      state.isLibraryVisible = !state.isLibraryVisible;
     },
   },
 });

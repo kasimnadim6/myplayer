@@ -6,7 +6,7 @@ import {
   faAngleLeft,
   faAngleRight,
 } from '@fortawesome/free-solid-svg-icons';
-import { SyntheticEvent, useRef, BaseSyntheticEvent, useState } from 'react';
+import { useRef, BaseSyntheticEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { songActions } from '../../store/slices/song-slice';
 import { IStore } from '../../interfaces/IStore';
