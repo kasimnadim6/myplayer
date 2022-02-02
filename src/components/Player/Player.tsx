@@ -6,13 +6,36 @@ import {
   faAngleLeft,
   faAngleRight,
 } from '@fortawesome/free-solid-svg-icons';
-import { ISong } from '../../interfaces/ISong';
+import { useLayoutEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { songActions } from '../../store/slices/song-slice';
+import { IStore } from '../../interfaces/IStore';
 
-type PlayerProps = {
-  audioRef: any;
-};
-const Player = ({ audioRef }: PlayerProps) => {
+const Player = () => {
+  const dispatch = useDispatch();
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const { currentSong, isSongPlaying } = useSelector(
+    (state: IStore) => state.songDetails
+  );
+
+  const playSongHandler = () => {
+    if (null !== audioRef.current) {
+      if (isSongPlaying) {
+        audioRef.current.pause();
+        dispatch(songActions.setPlayStatus(false));
+      } else {
+        audioRef.current.play();
+        dispatch(songActions.setPlayStatus(true));
+      }
+    }
+  };
+  // useLayoutEffect(() => {
+  //   if (null !== audioRef.current) {
+  //     audioRef.current.pause();
+  //   }
+  // });
   const playerDragHandler = () => {};
+
   return (
     <section className={styles.player}>
       <div className={styles['time-control']}>
@@ -38,11 +61,10 @@ const Player = ({ audioRef }: PlayerProps) => {
           // onClick={() => skipTrackHandler('skip-backward')}
         />
         <FontAwesomeIcon
-          // onClick={playSongHandler}
+          onClick={playSongHandler}
           className={styles.play}
           size="2x"
-          icon={faPlay}
-          // icon={isSongPlaying ? faPause : faPlay}
+          icon={isSongPlaying ? faPause : faPlay}
         />
         <FontAwesomeIcon
           className={styles['skip-forward']}
@@ -51,6 +73,7 @@ const Player = ({ audioRef }: PlayerProps) => {
           // onClick={() => skipTrackHandler('skip-forward')}
         />
       </div>
+      <audio ref={audioRef} src={currentSong?.audio}></audio>
     </section>
   );
 };
