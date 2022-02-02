@@ -1,6 +1,6 @@
 import { ISongState } from './ISongState';
 
 export interface IStore {
-  ui: any;
+  ui: { isLoading: boolean };
   songDetails: ISongState;
 }

@@ -5,10 +5,11 @@ import Song from './components/Song/Song';
 import Player from './components/Player/Player';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadSongs } from './store/Actions/song-action';
+import { IStore } from './interfaces/IStore';
 
 const App = () => {
   const dispatch = useDispatch();
-  const { isLoading } = useSelector((state: any) => state.ui);
+  const { isLoading } = useSelector((state: IStore) => state.ui);
 
   useEffect(() => {
     dispatch(loadSongs());

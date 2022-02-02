@@ -1,9 +1,9 @@
 import styles from './Song.module.scss';
 import { useSelector } from 'react-redux';
-import { ISongState } from '../../interfaces/ISongState';
+import { IStore } from '../../interfaces/IStore';
 
 const Song = () => {
-  const { currentSong } = useSelector((state: ISongState) => state);
+  const { currentSong } = useSelector((state: IStore) => state.songDetails);
 
   return (
     <section className={styles['song-container']}>
