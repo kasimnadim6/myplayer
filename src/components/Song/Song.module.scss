@@ -1,0 +1,29 @@
+.song-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 55vh;
+  padding: 2rem;
+  transition: all 0.5s ease;
+  .song-image {
+    font-family: inherit;
+    text-align: center;
+    color: var(--white-light);
+    img {
+      width: 15rem;
+      border-radius: 10rem;
+    }
+    .song-name {
+      padding: 2rem 1rem 1rem 1rem;
+      text-transform: uppercase;
+      font-size: 2.5rem;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+    .song-artist {
+      font-size: 1.6rem;
+      font-weight: 300;
+    }
+  }
+}
