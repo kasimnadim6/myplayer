@@ -64,4 +64,13 @@
       transform: translateY(-0.3rem);
     }
   }
+  .active-song {
+    figcaption {
+      background-image: linear-gradient(
+        to right bottom,
+        rgba(var(--primary-color-rgb), 0.6),
+        rgba(var(--secondary-color-rgb), 0.7)
+      );
+    }
+  }
 }

@@ -19,12 +19,30 @@ const songSlice = createSlice({
   name: 'song',
   initialState,
   reducers: {
-    loadSongs(state, { payload }) {
+    setSongs(state, { payload }) {
       state.songs = payload;
-      state.currentSong = payload[0];
     },
-    setCurrentSong(state, { payload }) {
-      state.currentSong = payload;
+    setCurrentSong(state) {
+      const activeSongIndex = state.songs.findIndex((song) => song.active);
+      if (activeSongIndex !== -1) {
+        state.currentSong = state.songs[activeSongIndex];
+      } else {
+        state.currentSong = state.songs[0];
+      }
+    },
+    changeSong(state, { payload }) {
+      const activeSongIndex = state.songs.findIndex(
+        (song) => song.active === true
+      );
+      const songToPlayIndex = state.songs.findIndex(
+        (song) => song.id === payload
+      );
+      if (activeSongIndex !== -1) {
+        state.songs[activeSongIndex].active = false;
+      }
+      if (activeSongIndex !== -1) {
+        state.songs[songToPlayIndex].active = true;
+      }
     },
     setPlayStatus(state, { payload }) {
       state.isSongPlaying = payload;

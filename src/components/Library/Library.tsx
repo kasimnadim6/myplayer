@@ -1,14 +1,25 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './Library.module.scss';
 import { IStore } from '../../interfaces/IStore';
+import { updateActiveSong } from '../../store/Actions/song-action';
+import { ISong } from '../../interfaces/ISong';
+import { songActions } from '../../store/slices/song-slice';
+import { useEffect } from 'react';
 
 const Library = () => {
-  const { isLibraryVisible, songs } = useSelector(
+  const dispatch = useDispatch();
+  const { isLibraryVisible, songs, currentSong } = useSelector(
     (state: IStore) => state.songDetails
   );
-  const onSongSelect = () => {
-    alert('clicked');
+  const onSongSelect = (songToPlay: ISong) => {
+    dispatch(songActions.changeSong(songToPlay.id));
+    dispatch(songActions.setCurrentSong());
   };
+  useEffect(() => {
+    if (songs.length > 0) {
+      dispatch(updateActiveSong(songs));
+    }
+  }, [dispatch, songs]);
   return (
     <section
       className={`${styles.library} ${
@@ -19,8 +30,10 @@ const Library = () => {
       {songs.map((song) => (
         <figure
           key={song.id}
-          onClick={onSongSelect}
-          className={styles['song-info-container']}
+          onClick={() => onSongSelect(song)}
+          className={`${styles['song-info-container']} ${
+            currentSong.id === song.id ? styles['active-song'] : ''
+          }`}
         >
           <img src={song.cover} alt={song.name} />
           <figcaption>
