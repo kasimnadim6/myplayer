@@ -1,7 +1,9 @@
+import { v4 as uuidv4 } from 'uuid';
+
 function chilHop() {
   return [
     {
-      id: 1,
+      id: uuidv4(),
       name: 'Directions',
       artist: 'Blue Wednesday, Shopan',
       audio: 'https://mp3.chillhop.com/serve.php/?mp3=11225',
@@ -11,7 +13,7 @@ function chilHop() {
       active: true,
     },
     {
-      id: 2,
+      id: uuidv4(),
       name: 'Chillhop Essentials Fall 2019',
       artist: 'Chillhop Music',
       audio: 'https://mp3.chillhop.com/serve.php/?mp3=9096',
@@ -21,7 +23,7 @@ function chilHop() {
       active: false,
     },
     {
-      id: 3,
+      id: uuidv4(),
       name: 'Lax Incense',
       artist: 'Mama Aiuto, Daphné',
       audio: 'https://mp3.chillhop.com/serve.php/?mp3=12125',
@@ -31,7 +33,7 @@ function chilHop() {
       active: false,
     },
     {
-      id: 4,
+      id: uuidv4(),
       name: 'Far From Home',
       artist: 'Toonorth',
       audio: 'https://mp3.chillhop.com/serve.php/?mp3=8127',
@@ -41,7 +43,7 @@ function chilHop() {
       active: false,
     },
     {
-      id: 5,
+      id: uuidv4(),
       name: 'After Dark',
       artist: 'Sugi.wa',
       audio: 'https://mp3.chillhop.com/serve.php/?mp3=8105',

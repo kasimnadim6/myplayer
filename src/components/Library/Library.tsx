@@ -18,6 +18,7 @@ const Library = () => {
       <h2 className={styles['playlist-name']}>Playlist</h2>
       {songs.map((song) => (
         <figure
+          key={song.id}
           onClick={onSongSelect}
           className={styles['song-info-container']}
         >

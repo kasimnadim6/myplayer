@@ -4,7 +4,7 @@ import { ISongState } from '../../interfaces/ISongState';
 const initialState: ISongState = {
   songs: [],
   currentSong: {
-    id: 0,
+    id: '',
     name: '',
     artist: '',
     audio: '',

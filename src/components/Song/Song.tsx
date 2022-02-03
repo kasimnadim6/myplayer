@@ -4,7 +4,6 @@ import { IStore } from '../../interfaces/IStore';
 
 const Song = () => {
   const { currentSong } = useSelector((state: IStore) => state.songDetails);
-
   return (
     <section className={styles['song-container']}>
       <figure className={styles['song-image']}>

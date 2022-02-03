@@ -1,11 +1,14 @@
 import { songActions } from '../slices/song-slice';
-import data from '../../data';
+// import data from '../../data';
 import { uiActions } from '../slices/ui-slice';
+import axios from 'axios';
+// import { v4 as uuidv4 } from 'uuid';
 
 export const loadSongs = () => (dispatch: any) => {
-  const resp = data();
-  dispatch(songActions.loadSongs(resp));
-  //   setTimeout(() => {
-  dispatch(uiActions.setLoadingState(false));
-  //   }, 2000);
+  axios
+    .get(`https://simplayer-2db8a-default-rtdb.firebaseio.com/songs.json`)
+    .then((resp) => {
+      dispatch(songActions.loadSongs(resp.data));
+      dispatch(uiActions.setLoadingState(false));
+    });
 };
