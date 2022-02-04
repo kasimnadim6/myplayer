@@ -4,7 +4,7 @@
   left: 0;
   width: 25vw;
   height: 100vh;
-  background: var(--white-light-1);
+  background: #5e5e5e;
   transition: all 0.5s;
   transform: translateX(-100%);
   display: flex;
@@ -18,11 +18,7 @@
     padding: 1rem;
     font-size: 3rem;
     font-weight: 800;
-    background-image: linear-gradient(
-      to right,
-      var(--primary-color),
-      var(--secondary-color)
-    );
+    background-image: linear-gradient(to right, var(--primary-color), var(--secondary-color));
     -webkit-background-clip: text;
     color: transparent;
   }
@@ -44,6 +40,8 @@
       width: 100%;
       cursor: pointer;
       background: var(--white-light);
+      background-color: var(--main-bg-color);
+      color: var(--white-light);
       &:hover {
         background-image: linear-gradient(
           to right bottom,

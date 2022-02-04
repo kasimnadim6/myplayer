@@ -18,11 +18,8 @@
       border-radius: 1rem;
       overflow: hidden;
       position: relative;
-      background: linear-gradient(
-        to right bottom,
-        var(--primary-color),
-        var(--secondary-color)
-      );
+      background: linear-gradient(to right top, var(--primary-color), var(--secondary-color));
+      z-index: 10;
       .player-progress-bar {
         width: 100%;
         padding: 1rem 0rem;
@@ -56,11 +53,7 @@
       padding: 1rem;
       font-size: var(--default-font-size);
       font-weight: 700;
-      background: linear-gradient(
-        to right,
-        var(--primary-color),
-        var(--secondary-color)
-      );
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
       -webkit-background-clip: text;
       color: transparent;
     }
