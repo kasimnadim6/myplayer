@@ -5,6 +5,7 @@
   transition: transform 0.5s;
   header {
     height: 9vh;
+    transition: transform 0.5s;
   }
   main {
     height: 91vh;
@@ -14,8 +15,12 @@
     align-items: center;
     justify-content: center;
     gap: 3rem;
+    transition: transform 0.5s;
   }
 }
 .library-visible {
-  transform: translateX(10%);
+  header,
+  main {
+    transform: translateX(10vw);
+  }
 }

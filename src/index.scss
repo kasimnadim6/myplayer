@@ -1,5 +1,7 @@
-@import './style-components/variables';
-@import './style-components/button';
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "./style-components/variables";
+@import "./style-components/button";
+
 * {
   margin: 0;
   padding: 0;
@@ -8,7 +10,14 @@
 html {
   font-size: 62.5%;
   overflow: hidden;
+  @media (max-width: 991.98px) {
+    font-size: 50%;
+  }
+  @media (max-width: 575.98px) {
+    font-size: 43.5%;
+  }
 }
+
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }

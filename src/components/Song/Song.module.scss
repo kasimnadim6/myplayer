@@ -12,7 +12,7 @@
     color: var(--white-light);
     img {
       width: 15rem;
-      border-radius: 10rem;
+      border-radius: 50%;
     }
     .song-name {
       padding: 2rem 1rem 1rem 1rem;
@@ -24,6 +24,22 @@
     .song-artist {
       font-size: 1.6rem;
       font-weight: 300;
+    }
+  }
+  @media (max-width: 991.98px) {
+    min-height: 45vh;
+    .song-image {
+      img {
+        width: 30rem;
+      }
+    }
+  }
+  @media (max-width: 575.98px) {
+    min-height: 40vh;
+    .song-image {
+      img {
+        width: 25rem;
+      }
     }
   }
 }

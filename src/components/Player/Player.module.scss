@@ -50,12 +50,19 @@
       }
     }
     p {
+      margin: 0;
       padding: 1rem;
       font-size: var(--default-font-size);
       font-weight: 700;
       background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
       -webkit-background-clip: text;
       color: transparent;
+    }
+    @media (max-width: 991.98px) {
+      width: 70%;
+    }
+    @media (max-width: 575.98px) {
+      width: 100%;
     }
   }
   .play-control {
@@ -78,6 +85,12 @@
     .play {
     }
     .skip-forward {
+    }
+    @media (max-width: 991.98px) {
+      width: 50%;
+    }
+    @media (max-width: 575.98px) {
+      width: 50%;
     }
   }
 }

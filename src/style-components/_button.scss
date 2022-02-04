@@ -10,6 +10,7 @@
     font-family: inherit;
     font-size: var(--default-font-size);
     font-weight: 700;
+    color: var(--black);
     border: none;
     cursor: pointer;
   }
@@ -28,7 +29,7 @@
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   }
   &::after {
-    content: '';
+    content: "";
     display: inline-block;
     height: 100%;
     width: 100%;
@@ -40,17 +41,9 @@
     transition: all 0.4s;
   }
   &-primary {
-    background-image: linear-gradient(
-      to right bottom,
-      var(--primary-color),
-      var(--secondary-color)
-    );
+    background-image: linear-gradient(to right bottom, var(--primary-color), var(--secondary-color));
     &::after {
-      background-image: linear-gradient(
-        to right bottom,
-        var(--primary-color),
-        var(--secondary-color)
-      );
+      background-image: linear-gradient(to right bottom, var(--primary-color), var(--secondary-color));
     }
   }
 }
