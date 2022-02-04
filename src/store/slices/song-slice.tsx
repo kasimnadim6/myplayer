@@ -31,18 +31,13 @@ const songSlice = createSlice({
       }
     },
     changeSong(state, { payload }) {
-      const activeSongIndex = state.songs.findIndex(
-        (song) => song.active === true
-      );
-      const songToPlayIndex = state.songs.findIndex(
-        (song) => song.id === payload
-      );
-      if (activeSongIndex !== -1) {
-        state.songs[activeSongIndex].active = false;
-      }
-      if (activeSongIndex !== -1) {
-        state.songs[songToPlayIndex].active = true;
-      }
+      state.songs.forEach((song) => {
+        if (song.id === payload) {
+          song.active = true;
+        } else {
+          song.active = false;
+        }
+      });
     },
     setPlayStatus(state, { payload }) {
       state.isSongPlaying = payload;

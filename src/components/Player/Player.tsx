@@ -6,7 +6,7 @@ import {
   faAngleLeft,
   faAngleRight,
 } from '@fortawesome/free-solid-svg-icons';
-import { useRef, BaseSyntheticEvent, useState } from 'react';
+import { useRef, BaseSyntheticEvent, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { songActions } from '../../store/slices/song-slice';
 import { IStore } from '../../interfaces/IStore';
@@ -18,7 +18,7 @@ const Player = () => {
   const [songDuration, setSongDuration] = useState(0);
   const [animationPercentage, setAnimationPercentage] = useState(0);
 
-  const { currentSong, isSongPlaying } = useSelector(
+  const { songs, currentSong, isSongPlaying } = useSelector(
     (state: IStore) => state.songDetails
   );
   const playSongHandler = () => {
@@ -49,7 +49,44 @@ const Player = () => {
   const updateTrackAnimation = {
     transform: `translateX(${animationPercentage}%)`,
   };
-  const playerDragHandler = () => {};
+  const skipTrackHandler = (direction: string) => {
+    let index = songs.indexOf(currentSong);
+    if (direction === 'skip-backward') {
+      index--;
+      if (index === 0) {
+        dispatch(songActions.changeSong(songs.at(-1)));
+      } else {
+        dispatch(songActions.changeSong(songs.at(index)?.id));
+      }
+      dispatch(songActions.setCurrentSong());
+    } else if (direction === 'skip-forward') {
+      index++;
+      if (index === songs.length) {
+        dispatch(songActions.changeSong(songs.at(0)?.id));
+      } else {
+        dispatch(songActions.changeSong(songs.at(index)?.id));
+      }
+      dispatch(songActions.setCurrentSong());
+    }
+  };
+  const playerDragHandler = (e: BaseSyntheticEvent) => {
+    const currentTime = e.target.value;
+    audioRef.current!.currentTime = currentTime;
+    setSongCurrentPlayTime(currentTime);
+    setAnimationPercentage(
+      (Math.round(currentTime) / Math.round(songDuration)) * 100
+    );
+  };
+  const songEndHandler = () => {
+    const index = songs.indexOf(currentSong);
+    dispatch(songActions.changeSong(songs.at((index + 1) % songs.length)?.id));
+    dispatch(songActions.setCurrentSong());
+  };
+  useEffect(() => {
+    if (currentSong && isSongPlaying) {
+      audioRef.current?.play();
+    }
+  }, [currentSong, isSongPlaying]);
 
   return (
     <section className={styles.player}>
@@ -60,8 +97,8 @@ const Player = () => {
             className={styles['player-progress-bar']}
             type="range"
             min={0}
-            max={100}
-            value={60}
+            max={songDuration}
+            value={songCurrentPlayTime}
             onChange={playerDragHandler}
           />
           <div
@@ -69,14 +106,14 @@ const Player = () => {
             className={styles['track-animation']}
           ></div>
         </div>
-        <p>{getSongTime(songDuration)}</p>
+        <p>{songDuration ? getSongTime(songDuration) : '0:00'}</p>
       </div>
       <div className={styles['play-control']}>
         <FontAwesomeIcon
           className={styles['skip-backward']}
           size="2x"
           icon={faAngleLeft}
-          // onClick={() => skipTrackHandler('skip-backward')}
+          onClick={() => skipTrackHandler('skip-backward')}
         />
         <FontAwesomeIcon
           onClick={playSongHandler}
@@ -88,13 +125,14 @@ const Player = () => {
           className={styles['skip-forward']}
           size="2x"
           icon={faAngleRight}
-          // onClick={() => skipTrackHandler('skip-forward')}
+          onClick={() => skipTrackHandler('skip-forward')}
         />
       </div>
       <audio
         ref={audioRef}
         onLoadedMetadata={onTimeUpdateHandler}
         onTimeUpdate={onTimeUpdateHandler}
+        onEnded={songEndHandler}
         src={currentSong?.audio}
       ></audio>
     </section>
