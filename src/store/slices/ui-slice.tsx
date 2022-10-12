@@ -1,14 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState: { isLoading: boolean } = {
+const initialState: { isLoading: boolean; isError: boolean } = {
   isLoading: true,
+  isError: false,
 };
 const uiSlice = createSlice({
-  name: 'ui',
+  name: "ui",
   initialState,
   reducers: {
     setLoadingState(state, { payload }) {
       state.isLoading = payload;
+    },
+    setError(state, { payload }) {
+      state.isError = payload;
     },
   },
 });

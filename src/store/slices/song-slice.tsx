@@ -1,22 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { ISongState } from '../../interfaces/ISongState';
+import { createSlice } from "@reduxjs/toolkit";
+import { ISongState } from "../../interfaces/ISongState";
 
 const initialState: ISongState = {
   songs: [],
   currentSong: {
-    id: '',
-    name: '',
-    artist: '',
-    audio: '',
+    id: "",
+    name: "",
+    artist: "",
+    audio: "",
     color: [],
-    cover: '',
+    cover: "",
     active: false,
   },
   isSongPlaying: false,
   isLibraryVisible: false,
 };
 const songSlice = createSlice({
-  name: 'song',
+  name: "song",
   initialState,
   reducers: {
     setSongs(state, { payload }) {

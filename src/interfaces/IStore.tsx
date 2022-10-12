@@ -1,6 +1,6 @@
-import { ISongState } from './ISongState';
+import { ISongState } from "./ISongState";
 
 export interface IStore {
-  ui: { isLoading: boolean };
+  ui: { isLoading: boolean; isError: boolean };
   songDetails: ISongState;
 }
