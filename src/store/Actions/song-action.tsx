@@ -3,8 +3,8 @@ import { songActions } from "../slices/song-slice";
 import { uiActions } from "../slices/ui-slice";
 import axios from "axios";
 import { ISong } from "../../interfaces/ISong";
-import { useSelector } from "react-redux";
-import { IStore } from "../../interfaces/IStore";
+// import { useSelector } from "react-redux";
+// import { IStore } from "../../interfaces/IStore";
 // import { v4 as uuidv4 } from 'uuid';
 export const loadSongs = () => (dispatch: any) => {
   axios
